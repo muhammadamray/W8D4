@@ -31,6 +31,8 @@ Function.prototype.myBind = function(context){
 
 
 
+
+
 class Cat {
     constructor(name) {
       this.name = name;
@@ -76,4 +78,24 @@ class Cat {
   // Pavlov says meow to me!
   // true
 
+
+
+
+function curriedSum(numArgs){
+
+    let numbers = [];
+
+    function _curriedSum(num){ 
+        numbers.push(num);
+        if (numbers.length === numArgs) {
+           return numbers.reduce((total, current) => total + current);
+        } else {
+            return _curriedSum;
+        }
+    
+    }
+
+    return _curriedSum;
+
+}
 
