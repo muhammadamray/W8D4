@@ -17,9 +17,15 @@ function sum () {
 // }
 
 Function.prototype.myBind = function(context){
-    let newArray = arguments;
-    return this.apply(context)()
+    let newArray = Array.from(arguments).slice(1);
+    let that = this;
 
+    return function(){
+      let innerArray = Array.from(arguments);
+  
+      that.apply(context, newArray.concat(innerArray));
+
+    }
 };
 
 
