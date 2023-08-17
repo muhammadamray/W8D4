@@ -84,7 +84,7 @@ class Cat {
 function curriedSum(numArgs){
 
     let numbers = [];
-
+    
     function _curriedSum(num){ 
         numbers.push(num);
         if (numbers.length === numArgs) {
@@ -99,3 +99,18 @@ function curriedSum(numArgs){
 
 }
 
+
+
+Function.prototype.curry = function(numArgs){
+  let numbers = [];
+  let that = this;
+  function _curriedSum(arg){
+    numbers.push(arg);
+    if (numbers.length === numArgs){
+      return that.apply(null,numbers)
+    }else{
+      return _curriedSum;
+    }
+  }
+  return _curriedSum
+}
